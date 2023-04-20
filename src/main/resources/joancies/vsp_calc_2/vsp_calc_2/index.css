@@ -1,0 +1,80 @@
+.root{
+    -fx-background-image: url('MFS_Screenshot.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+ }
+ .text-field{
+    -fx-background-color: rgba(255, 255, 255, 0.4) ;
+    -fx-text-fill: white;
+    -fx-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -fx-font-size: 20px;
+ }
+
+ #runwayDField, #windDField, #windSpeedField{
+    -fx-background-color: rgba(255, 255, 255, 0.1) ;
+    -fx-text-fill: white;
+    -fx-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -fx-font-size: 20px;
+ }
+
+.check-box .box{
+    -fx-background-color: rgba(255, 255, 255, 0.4) ;
+    ;
+ }
+ .check-box {
+    -fx-font-size: 20px;
+    -fx-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -fx-text-fill: "white";
+
+ }
+.label{
+    -fx-font-size: 20px;
+    -fx-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -fx-text-fill: "white";
+    -fx-alignment: center;
+}
+#titleLabel #titleLabel1{
+    -fx-font-size: 30px;
+    -fx-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -fx-text-fill: "white";  
+    -fx-alignment: center; 
+}
+.choice-box{
+    -fx-background-color: rgba(255, 255, 255, 0.4) ;
+}
+
+
+.choice-box .context-menu { 
+    -fx-background-color:  rgba(255, 255, 255, 0.4);
+    -fx-width: 150px;
+ }
+
+.choice-box .menu-item:focused { 
+    -fx-background-color: white; 
+}
+
+.choice-box .menu-item > .label {
+     -fx-text-fill: white; 
+    }
+
+.choice-box .menu-item:focused > .label { 
+    -fx-text-fill: black; 
+}
+
+.button{
+    
+    -fx-font-size: 20px;
+    -fx-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -fx-text-weight: bold;  
+}
+.button:focused{
+    -fx-background-color:  rgba(250, 106, 70, 1);
+    -fx-font-size: 20px;
+    -fx-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -fx-text-weight: bold;  
+    -fx-text-fill: white;
+}
+.tab-pane{
+    -fx-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -fx-font-size: 16px;
+}
