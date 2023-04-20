@@ -103,5 +103,6 @@
               <Label prefHeight="40.0" prefWidth="100.0" text="V1:" GridPane.rowIndex="5" />
          </children>
       </GridPane>
+      <Label fx:id="warning" layoutX="293.0" layoutY="719.0" prefHeight="17.0" prefWidth="702.0" text="INTENTED FOR FLIGHT SIMULATION ONLY- NOT FOR OPERATIONAL USE!" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
      </children>
   </AnchorPane>
