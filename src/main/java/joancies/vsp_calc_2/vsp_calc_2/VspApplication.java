@@ -18,7 +18,7 @@ public class VspApplication extends Application {
         scene.getStylesheets().add(getClass().getResource("index.css").toExternalForm());
         stage.setTitle("Speeds calculator");
         stage.setScene(scene);
-//        stage.setResizable(false);
+
         stage.show();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override

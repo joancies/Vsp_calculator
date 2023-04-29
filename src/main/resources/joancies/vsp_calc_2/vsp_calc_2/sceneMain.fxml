@@ -10,12 +10,12 @@
         <tabs>
           <Tab text="Takeoff">
                <content>
-                   <fx:include fx:id="TakeOffTabPage"  source="sceneTO.fxml" />
+                   <fx:include fx:id="TakeOffTabPage"  source="sceneTakeoff.fxml" />
                </content>
           </Tab>
           <Tab text="Landing">
             <content>
-                <fx:include fx:id="landingTabPage" source="sceneL.fxml" />
+                <fx:include fx:id="landingTabPage" source="sceneLanding.fxml" />
             </content>
           </Tab>
         </tabs>
