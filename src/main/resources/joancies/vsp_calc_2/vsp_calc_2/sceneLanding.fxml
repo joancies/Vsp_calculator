@@ -83,7 +83,7 @@
                <GridPane.margin>
                   <Insets right="150.0" />
                </GridPane.margin></TextField>
-            <Button fx:id="calculateLButton" mnemonicParsing="false" onAction="#calculateLandingSpeeds" prefHeight="40.0" prefWidth="150.0" text="CALCULATE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Button fx:id="calculateLButton" mnemonicParsing="false" onAction="#calculateSpeeds" prefHeight="40.0" prefWidth="150.0" text="CALCULATE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
       <Label fx:id="warning" layoutX="303.0" layoutY="729.0" prefHeight="17.0" prefWidth="702.0" text="INTENTED FOR FLIGHT SIMULATION ONLY- NOT FOR OPERATIONAL USE!" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />

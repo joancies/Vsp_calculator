@@ -8,125 +8,120 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TakeoffCalculationController implements Initializable {
+public class TakeoffCalculationController extends VspCalculationController implements Initializable {
   @FXML
   private CheckBox wetRunwayCheckBox;
   @FXML
   private ChoiceBox<String> flapsTakeoffChoiceBox;
   @FXML
   private TextField v1Field, v2Field, vrField, vfriField, vclmbField, tempField, weightField, altitudeField,windDField,runwayDField,windSpeedField;
-  @FXML
-  private Button calculateTOButton;
-
-  private boolean wetRunway;
-  private boolean incorrectFieldsValues;
-  private int flapsTO, temperature, weight,altitude, windDegree, runwayDegree, windSpeed;
-  private int[] params = new int[6];
-  private int numberOfFieldsToFillUp;
-
   private TextField[] fields;
-
+  private boolean wetRunway;
+  private int takeoffFlapsSettings, temperature, weight,altitude, windDegree, runwayDegree, windSpeed;
+  private int numberOfFieldsToFillUp;
   private TakeoffSpeedsCalculation calculation;
-
   private String[] flapsSettings = {"5°", "10°","15°"};
+  int[] params = new int[6];
 
-  public void calculateTO(ActionEvent event){
-    incorrectFieldsValues =false;
+  public void calculateSpeeds(ActionEvent event) {
+    resetFieldsStyle();
+    setIncorrectFieldValue(false);
+    wetRunway = wetRunwayCheckBox.isSelected();
+    getParametersToCalculation();
+    checkWindAndRunwayValues();
 
-    flapsTakeoffChoiceBox.setStyle("-fx-border-color:none");
-
-    for (int i = 0; i < fields.length; i++) {
-        fields[i].setStyle("-fx-border-color:none; ");
-      if(wetRunwayCheckBox.isSelected()){
-        windDField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4) ");
-        runwayDField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4) ");
-        windSpeedField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4) ");}
+    if (!getIncorrectFieldValue()) {
+      makeCalculation();
+    } else {
+      cleanResultFields();
     }
-
-    wetRunway= wetRunwayCheckBox.isSelected();
-
-    try {
-      flapsTO = Integer.parseInt(flapsTakeoffChoiceBox.getValue().substring(0,flapsTakeoffChoiceBox.getValue().length()-1));
-    }
-    catch (Exception e){
-      flapsTakeoffChoiceBox.setStyle("-fx-border-color:red;");
-      incorrectFieldsValues =true;
-    }
-
-    if(wetRunway) {
-      numberOfFieldsToFillUp =6;
-    }
-    else{
-    numberOfFieldsToFillUp =3;
-      }
-
-    for (int i = 0; i < numberOfFieldsToFillUp; i++) {
-      try {
-        params[i] = Integer.parseInt(fields[i].getCharacters().toString());
-      } catch (Exception e) {
-        fields[i].setStyle("-fx-border-color:red; -fx-background-color: rgba(255, 255, 255, 0.4)");
-        incorrectFieldsValues = true;
-      }
-    }
-    temperature = params[0];
-    weight= params[1];
-    altitude= params[2];
-    windDegree =params[3];
-    runwayDegree =params[4];
-    windSpeed=params[5];
-
-    if(!incorrectFieldsValues) {
-      for (int i = 1; i < params.length; i++) {
-        if (params[i]>=0){
-          if (wetRunway) {
-            calculation = new TakeoffSpeedsCalculation(flapsTO, temperature, weight, altitude, windDegree, runwayDegree, windSpeed);
-          } else {
-            calculation = new TakeoffSpeedsCalculation( flapsTO, temperature, weight, altitude);
-          }
-          v1Field.setText(calculation.calculateV1()+" kt");
-          v2Field.setText(calculation.calculateV2()+" kt");
-          vrField.setText(calculation.calculateVr()+" kt");
-          vclmbField.setText(calculation.getVclmb()+".0 kt");
-          vfriField.setText(calculation.getVfri()+".0 kt");
-        }
-        else {
-          fields[i].setStyle("-fx-border-color:red; -fx-background-color: rgba(255, 255, 255, 0.4)");
-
-        }
-
-      }
-
-    }
-
   }
+
   public void isWet(ActionEvent event){
     if(wetRunwayCheckBox.isSelected()){
-    windDField.setEditable(true);
-    windDField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4) ");
-    runwayDField.setEditable(true);
-    runwayDField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4) ");
-    windSpeedField.setEditable(true);
-    windSpeedField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4) ");}
+      setFieldsAvailable(windDField);
+      setFieldsAvailable(windSpeedField);
+      setFieldsAvailable(runwayDField);
+    }
     else
     {
-      windDField.setEditable(false);
-      windDField.setText("");
-      windDField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.1)");
-      runwayDField.setEditable(false);
-      runwayDField.setText("");
-      runwayDField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.1) ");
-      windSpeedField.setEditable(false);
-      windSpeedField.setStyle("-fx-background-color: rgba(255, 255, 255, 0.1) ");
-      windSpeedField.setText("");
+      setFieldsNotAvailable(windDField);
+      setFieldsNotAvailable(windSpeedField);
+      setFieldsNotAvailable(runwayDField);
     }
   }
-
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-
     fields = new TextField[] {tempField, weightField, altitudeField,windDField,runwayDField,windSpeedField} ;
     flapsTakeoffChoiceBox.getItems().addAll(flapsSettings);
+  }
 
+  @Override
+  public void resetFieldsStyle() {
+    for (int i = 0; i < fields.length; i++) {
+      resetBorderColor(fields[i]);
+      if(wetRunwayCheckBox.isSelected()){
+        setFieldsAvailable(windDField);
+        setFieldsAvailable(windSpeedField);
+        setFieldsAvailable(runwayDField);
+      }
+    }
+    resetBorderColor(flapsTakeoffChoiceBox);
+  }
+  public void getParametersToCalculation(){
+    getNumberOfFieldsToFillUp();
+    for (int i = 0; i < numberOfFieldsToFillUp; i++) {
+      params[i] = getParameterValueFromField(fields[i]);
+    }
+    takeoffFlapsSettings = getParameterValueFromField(flapsTakeoffChoiceBox);
+    temperature = params[0];
+    weight = params[1];
+    altitude = params[2];
+    windDegree = params[3];
+    runwayDegree = params[4];
+    windSpeed = params[5];
+  }
+  public void getNumberOfFieldsToFillUp(){
+    if (wetRunway) {
+      numberOfFieldsToFillUp = 6;
+    } else {
+      numberOfFieldsToFillUp = 3;
+    }
+  }
+  public void checkWindAndRunwayValues(){
+    if(windDegree<0){
+      setIncorrectValueFieldStyle(windDField);
+      setIncorrectFieldValue(true);
+    }
+    else if(windSpeed<0){
+      setIncorrectValueFieldStyle(windSpeedField);
+      setIncorrectFieldValue(true);
+    }
+    else if(runwayDegree<0){
+      setIncorrectValueFieldStyle(runwayDField);
+      setIncorrectFieldValue(true);
+    }
+  }
+
+  public void cleanResultFields(){
+    v1Field.setText("");
+    v2Field.setText("");
+    vrField.setText("");
+    vclmbField.setText("");
+    vfriField.setText("");
+  }
+  public void makeCalculation(){
+
+    if (wetRunway) {
+      calculation = new TakeoffSpeedsCalculation(takeoffFlapsSettings, temperature, weight, altitude, windDegree, runwayDegree, windSpeed);
+    } else {
+      calculation = new TakeoffSpeedsCalculation(takeoffFlapsSettings, temperature, weight, altitude);
+    }
+    v1Field.setText(calculation.getV1() + " kt");
+    v2Field.setText(calculation.getV2() + " kt");
+    vrField.setText(calculation.getVr() + " kt");
+    vclmbField.setText(calculation.getVclmb() + ".0 kt");
+    vfriField.setText(calculation.getVfri() + ".0 kt");
   }
 }

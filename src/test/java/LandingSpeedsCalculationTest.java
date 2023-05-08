@@ -14,15 +14,15 @@ class LandingSpeedsCalculationTest {
     }
     @Test
     void vapp_test_weight_18000_flaps_5(){
-        assertEquals(115, landingSpeedsCalculation_1.getVapp());
+        assertEquals(115, landingSpeedsCalculation_1.getVappChosenArray());
     }
     @Test
     void vref_test_weight_18000_flaps_5(){
-        assertEquals(115, landingSpeedsCalculation_1.getVref());
+        assertEquals(115, landingSpeedsCalculation_1.getVrefChosenArray());
     }
     @Test
     void vga_test_weight_18000_flaps_5(){
-        assertEquals(109, landingSpeedsCalculation_1.getVga());
+        assertEquals(109, landingSpeedsCalculation_1.getVgaChosenArray());
     }
     @Test
     void i_test_weight_18000(){
@@ -33,15 +33,15 @@ class LandingSpeedsCalculationTest {
 
     @Test
     void vapp_test_weight_20000_flaps_10(){
-        assertEquals(112, landingSpeedsCalculation_2.getVapp());
+        assertEquals(112, landingSpeedsCalculation_2.getVappChosenArray());
     }
     @Test
     void vref_test_weight_20000_flaps_10(){
-        assertEquals(112, landingSpeedsCalculation_2.getVref());
+        assertEquals(112, landingSpeedsCalculation_2.getVrefChosenArray());
     }
     @Test
     void vga_test_weight_20000_flaps_10(){
-        assertEquals(108, landingSpeedsCalculation_2.getVga());
+        assertEquals(108, landingSpeedsCalculation_2.getVgaChosenArray());
     }
     @Test
     void i_test_weight_20000(){
@@ -52,15 +52,15 @@ class LandingSpeedsCalculationTest {
 
     @Test
     void vapp_test_weight_22000_flaps_15(){
-        assertEquals(112, landingSpeedsCalculation_3.getVapp());
+        assertEquals(112, landingSpeedsCalculation_3.getVappChosenArray());
     }
     @Test
     void vref_test_weight_22000_flaps_15(){
-        assertEquals(112, landingSpeedsCalculation_3.getVref());
+        assertEquals(112, landingSpeedsCalculation_3.getVrefChosenArray());
     }
     @Test
     void vga_test_weight_22000_flaps_15(){
-        assertEquals(105, landingSpeedsCalculation_3.getVga());
+        assertEquals(105, landingSpeedsCalculation_3.getVgaChosenArray());
     }
     @Test
     void i_test_weight_22000(){
@@ -71,15 +71,15 @@ class LandingSpeedsCalculationTest {
 
     @Test
     void vapp_test_weight_24000_flaps_35(){
-        assertEquals(112, landingSpeedsCalculation_4.getVapp());
+        assertEquals(112, landingSpeedsCalculation_4.getVappChosenArray());
     }
     @Test
     void vref_test_weight_24000_flaps_35(){
-        assertEquals(112, landingSpeedsCalculation_4.getVref());
+        assertEquals(112, landingSpeedsCalculation_4.getVrefChosenArray());
     }
     @Test
     void vga_test_weight_24000_flaps_35(){
-        assertEquals(112, landingSpeedsCalculation_4.getVga());
+        assertEquals(112, landingSpeedsCalculation_4.getVgaChosenArray());
     }
     @Test
     void i_test_weight_24000(){
@@ -90,15 +90,15 @@ class LandingSpeedsCalculationTest {
 
     @Test
     void vapp_test_weight_26000_flaps_5(){
-        assertEquals(137, landingSpeedsCalculation_5.getVapp());
+        assertEquals(137, landingSpeedsCalculation_5.getVappChosenArray());
     }
     @Test
     void vref_test_weight_26000_flaps_5(){
-        assertEquals(137, landingSpeedsCalculation_5.getVref());
+        assertEquals(137, landingSpeedsCalculation_5.getVrefChosenArray());
     }
     @Test
     void vga_test_weight_26000_flaps_5(){
-        assertEquals(125, landingSpeedsCalculation_5.getVga());
+        assertEquals(125, landingSpeedsCalculation_5.getVgaChosenArray());
     }
     @Test
     void i_test_weight_26000(){
@@ -109,15 +109,15 @@ class LandingSpeedsCalculationTest {
 
     @Test
     void vapp_test_weight_28000_flaps_10(){
-        assertEquals(132, landingSpeedsCalculation_6.getVapp());
+        assertEquals(132, landingSpeedsCalculation_6.getVappChosenArray());
     }
     @Test
     void vref_test_weight_28000_flaps_10(){
-        assertEquals(132, landingSpeedsCalculation_6.getVref());
+        assertEquals(132, landingSpeedsCalculation_6.getVrefChosenArray());
     }
     @Test
     void vga_test_weight_28000_flaps_10(){
-        assertEquals(122, landingSpeedsCalculation_6.getVga());
+        assertEquals(122, landingSpeedsCalculation_6.getVgaChosenArray());
     }
     @Test
     void i_test_weight_28000(){
@@ -128,15 +128,15 @@ class LandingSpeedsCalculationTest {
 
     @Test
     void vapp_test_weight_28001_flaps_35(){
-        assertEquals(123, landingSpeedsCalculation_7.getVapp());
+        assertEquals(123, landingSpeedsCalculation_7.getVappChosenArray());
     }
     @Test
     void vref_test_weight_28001_flaps_35(){
-        assertEquals(123, landingSpeedsCalculation_7.getVref());
+        assertEquals(123, landingSpeedsCalculation_7.getVrefChosenArray());
     }
     @Test
     void vga_test_weight_28001_flaps_35(){
-        assertEquals(123, landingSpeedsCalculation_7.getVga());
+        assertEquals(123, landingSpeedsCalculation_7.getVgaChosenArray());
     }
     @Test
     void i_test_weight_28001(){

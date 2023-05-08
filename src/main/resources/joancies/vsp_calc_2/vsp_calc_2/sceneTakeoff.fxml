@@ -75,7 +75,7 @@
                <GridPane.margin>
                   <Insets right="75.0" />
                </GridPane.margin></TextField>
-              <Button fx:id="calculateTOButton" mnemonicParsing="false" onAction="#calculateTO" prefHeight="40.0" prefWidth="150.0" text="CALCULATE" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+              <Button fx:id="calculateTOButton" mnemonicParsing="false" onAction="#calculateSpeeds" prefHeight="40.0" prefWidth="150.0" text="CALCULATE" GridPane.columnIndex="1" GridPane.rowIndex="10" />
               <TextField fx:id="vclmbField" editable="false" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <GridPane.margin>
                   <Insets right="75.0" />

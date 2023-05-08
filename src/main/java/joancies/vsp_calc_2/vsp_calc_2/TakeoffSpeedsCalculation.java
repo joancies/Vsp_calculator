@@ -6,33 +6,20 @@ public class TakeoffSpeedsCalculation {
     private int takeoffFlapsSettings;
     private int temperature;
     private int weight;
-    
     private int altitude;
     private int windDegree;
     private int runwayDegree;
     private int windSpeed;
-
     private int vr;
     private int v2;
-
     private double v1;
-
     private  int i;
     private int j;
-
-    private int[][] vrArray;
-    private int[][] v2Array;
-    private int[] vFri;
-
-
-    private double windSpeedValue;
-    private boolean headWind;
+    private int[][] vrChosenArray;
+    private int[][] v2ChosenArray;
+    private int[] vFriChosenArray;
     private int degreeDifference;
-
-
-
-
-
+    private double factorForWindCalculation;
     private int[][] vrValuesForFlaps05TemperatureBelow20C = {
             {102, 102, 102, 102, 102, 103},
             {105, 106, 107, 107, 108, 110},
@@ -159,7 +146,8 @@ public class TakeoffSpeedsCalculation {
         this.temperature = temperature;
         this.weight = weight;
         this.altitude = altitude;
-        getSpeeds();
+        i= getI();
+        j= getJ();
     }
 
     public TakeoffSpeedsCalculation(int takeoffFlapsSettings, int temperature, int weight, int altitude, int windDegree, int runwayDegree, int windSpeed) {
@@ -171,179 +159,154 @@ public class TakeoffSpeedsCalculation {
         this.windDegree = windDegree;
         this.runwayDegree = runwayDegree;
         this.windSpeed = windSpeed;
-        getSpeeds();
-        getWindSpeedValue();
-
+        i= getI();
+        j= getJ();
     }
-
-
-
     public int getI(){
         if(weight<= 18_000)
-            i=0;
+            return 0;
         else if(weight>18_000 && weight<=20_000 )
-            i=1;
+            return 1;
         else if(weight>20_000 && weight<=22_000 )
-            i=2;
+            return 2;
         else if(weight>22_000 && weight<=24_000 )
-            i=3;
+            return 3;
         else if(weight>24_000 && weight<=26_000 )
-            i=4;
+            return 4;
         else if(weight>26_000 && weight<=28_000 )
-            i=5;
+            return 5;
         else
-            i=6;
-
-        return i;
+            return 6;
     }
     public int getJ(){
         if(altitude<= 1_000)
-            j=0;
+            return 0;
         else if(altitude>1_000 && altitude<=3_000 )
-            j=1;
+            return 1;
         else if(altitude>3_000 && altitude<=5_000 )
-            j=2;
+            return 2;
         else if(altitude>5_000 && altitude<=7_000 )
-            j=3;
+            return 3;
         else if(altitude>7_000 && altitude<=9_000 )
-            j=4;
+            return 4;
         else
-            j=5;
-
-        return j;
-
+            return 5;
     }
-
-    public int getVr(){
-
-        if(temperature > 20 && takeoffFlapsSettings == 5)
-            vrArray = vrValuesForFlaps05TemperatureAbove20C;
-        else if(temperature > 20 && takeoffFlapsSettings == 10)
-            vrArray = vrValuesForFlaps10TemperatureAbove20C;
-        else if(temperature > 20 && takeoffFlapsSettings == 15)
-            vrArray = vrValuesForFlaps15TemperatureAbove20C;
-        else if(temperature <= 20 && takeoffFlapsSettings == 5)
-            vrArray = vrValuesForFlaps05TemperatureBelow20C;
-        else if(temperature <= 20 && takeoffFlapsSettings == 10)
-            vrArray = vrValuesForFlaps10TemperatureBelow20C;
-        else if (temperature <= 20 && takeoffFlapsSettings == 15)
-            vrArray = vrValuesForFlaps15TemperatureBelow20C;
-
-        return vrArray[i][j];
-    }
-    public int getV2(){
-        if(temperature > 20 && takeoffFlapsSettings == 5)
-            v2Array = v2ValuesForFlaps05TemperatureAbove20C;
-        else if(temperature > 20 && takeoffFlapsSettings == 10)
-            v2Array = v2ValuesForFlaps10TemperatureAbove20C;
-        else if(temperature > 20 && takeoffFlapsSettings == 15)
-            v2Array = v2ValuesForFlaps15TemperatureAbove20C;
-        else if(temperature <= 20 && takeoffFlapsSettings == 5)
-            v2Array = v2ValuesForFlaps05TemperatureBelow20C;
-        else if(temperature <= 20 && takeoffFlapsSettings == 10)
-            v2Array = v2ValuesForFlaps10TemperatureBelow20C;
-        else if (temperature <= 20 && takeoffFlapsSettings == 15)
-            v2Array = v2ValuesForFlaps15TemperatureBelow20C;
-
-        return v2Array[i][j];
-    }
-
-    public int getVfri(){
-        if(takeoffFlapsSettings == 5)
-            vFri = vfriValuesForFlaps05;
-        else if(takeoffFlapsSettings == 10)
-            vFri = vfriValuesForFlaps10;
-        else if(takeoffFlapsSettings == 15)
-            vFri = vfriValuesForFlaps15;
-
-        return vFri[i];
-    }
-
-    public int getVclmb(){
-
-        return vclmbValues[i];
-    }
-
-
-    public void getSpeeds(){
-        i= getI();
-        j= getJ();
-        vr = getVr();
-        v2 = getV2();
-        v1 = getVr();
-
-    }
-
-
-    public double getWindSpeedValue(){
-
-        degreeDifference = runwayDegree - windDegree;
-
-        if (degreeDifference < 0) {
-            degreeDifference = degreeDifference + 360;
-        }
-
-        if((degreeDifference >=0 && degreeDifference <=30)||(degreeDifference >=331 && degreeDifference <=359)){
-            headWind = true;
-            windSpeedValue = windSpeed;
-        }
-        else if(degreeDifference >=151 && degreeDifference <=210){
-            headWind = false;
-            windSpeedValue = windSpeed;
-        }
-        else if((degreeDifference >=31 && degreeDifference <=60)||(degreeDifference >=301 && degreeDifference <=330)){
-            headWind = true;
-            windSpeedValue = 0.66*windSpeed;
-        }
-        else if((degreeDifference >=211 && degreeDifference <=240)||(degreeDifference >=121 && degreeDifference <=150)){
-            headWind = false;
-            windSpeedValue = 0.66*windSpeed;
-        }
-        else if((degreeDifference >=61 && degreeDifference <=90)||(degreeDifference >=271 && degreeDifference <=300)){
-            headWind = true;
-            windSpeedValue = 0.33*windSpeed;
-        }
-        else if((degreeDifference >=91 && degreeDifference <=120)||(degreeDifference >=241 && degreeDifference <=270)){
-            headWind = false;
-            windSpeedValue = 0.33*windSpeed;
-        }
-
-        return windSpeedValue;
-    }
-
-
-    public double calculateV1() {
-
+    public double getV1() {
+        v1 = getVrInitialValue();
         if (wetRunway) {
-            if (headWind)
-                v1 = (v1 - (8 - 0.1 * windSpeedValue));
+            if (isHeadWind())
+                v1 = (v1 - (8 - 0.1 * getWindSpeedValue()));
             else
-                v1 = (v1 - (8 + 0.3 * windSpeedValue));
+                v1 = (v1 - (8 + 0.3 * getWindSpeedValue()));
         }
-
         if (v1 < 97 && takeoffFlapsSettings == 5)
             v1 = 97;
-        if (v1 < 96 && (takeoffFlapsSettings == 10 || takeoffFlapsSettings == 15))
+        else if (v1 < 96 && (takeoffFlapsSettings == 10 || takeoffFlapsSettings == 15))
             v1 = 96;
         v1=Math.round(v1*100);
         v1=v1/100;
         return v1;
     }
+    public int getVrInitialValue(){
+        vrChosenArray = getVrForTemperatureAndFlapsSettings();
+        return vrChosenArray[i][j];
+    }
+    public int[][] getVrForTemperatureAndFlapsSettings(){
 
-    public double calculateVr() {
+        if(temperature > 20 && takeoffFlapsSettings == 5)
+            return vrValuesForFlaps05TemperatureAbove20C;
+        else if(temperature > 20 && takeoffFlapsSettings == 10)
+            return vrValuesForFlaps10TemperatureAbove20C;
+        else if(temperature > 20 && takeoffFlapsSettings == 15)
+            return vrValuesForFlaps15TemperatureAbove20C;
+        else if(temperature <= 20 && takeoffFlapsSettings == 5)
+            return vrValuesForFlaps05TemperatureBelow20C;
+        else if(temperature <= 20 && takeoffFlapsSettings == 10)
+            return vrValuesForFlaps10TemperatureBelow20C;
+        else
+            return vrValuesForFlaps15TemperatureBelow20C;
+    }
+    public int getDegreeDifference(){
 
+        if ((runwayDegree - windDegree) < 0)
+            return runwayDegree - windDegree + 360;
+        else
+            return runwayDegree - windDegree;
+    }
+    public boolean isHeadWind(){
+        degreeDifference = getDegreeDifference();
+
+        if((degreeDifference >=0 && degreeDifference <=90)||(degreeDifference >=271 && degreeDifference <=360))
+            return true;
+        else
+            return false;
+    }
+    public double getWindSpeedValue(){
+        factorForWindCalculation = getFactorForWindCalculation();
+        return factorForWindCalculation * windSpeed;
+    }
+    public double getFactorForWindCalculation(){
+        if((degreeDifference >=0 && degreeDifference <=30)||(degreeDifference >=151 && degreeDifference <=210)||
+                (degreeDifference >=331 && degreeDifference <=360))
+            return  1;
+        else if((degreeDifference >=31 && degreeDifference <=60)|| (degreeDifference >=211 && degreeDifference <=240)||
+                (degreeDifference >=121 && degreeDifference <=150)||(degreeDifference >=301 && degreeDifference <=330))
+            return 0.66;
+        else
+            return 0.33;
+    }
+    public double getVr() {
+        vr = getVrInitialValue();
         if (vr < 108 && takeoffFlapsSettings == 5)
-            vr = 108;
-        if (vr < 104 && takeoffFlapsSettings == 10)
-            vr = 104;
-        if (vr < 100 && takeoffFlapsSettings == 15)
-            vr = 100;
-        return vr;
+            return 108;
+        else if (vr < 104 && takeoffFlapsSettings == 10)
+            return 104;
+        else if (vr < 100 && takeoffFlapsSettings == 15)
+            return 100;
+        else
+            return vr;
     }
-    public double calculateV2() {
-        if (vr > v2)
-            v2 = vr;
-        return v2;
-    }
+    public double getV2() {
+        v2 = getV2InitialValue();
+        vr = getVrInitialValue();
 
+        if (vr > v2)
+            return vr;
+        else
+            return v2;
+    }
+    public int getV2InitialValue(){
+        v2ChosenArray = getV2ForTemperatureAndFlapsSettings();
+        return v2ChosenArray[i][j];
+    }
+    public int[][] getV2ForTemperatureAndFlapsSettings(){
+        if(temperature > 20 && takeoffFlapsSettings == 5)
+            return v2ValuesForFlaps05TemperatureAbove20C;
+        else if(temperature > 20 && takeoffFlapsSettings == 10)
+            return v2ValuesForFlaps10TemperatureAbove20C;
+        else if(temperature > 20 && takeoffFlapsSettings == 15)
+            return v2ValuesForFlaps15TemperatureAbove20C;
+        else if(temperature <= 20 && takeoffFlapsSettings == 5)
+            return v2ValuesForFlaps05TemperatureBelow20C;
+        else if(temperature <= 20 && takeoffFlapsSettings == 10)
+            return v2ValuesForFlaps10TemperatureBelow20C;
+        else
+            return v2ValuesForFlaps15TemperatureBelow20C;
+    }
+    public int getVfri(){
+        vFriChosenArray = getVfriForFlapsSettings();
+        return vFriChosenArray[i];
+    }
+    public int[] getVfriForFlapsSettings(){
+        if(takeoffFlapsSettings == 5)
+            return vfriValuesForFlaps05;
+        else if(takeoffFlapsSettings == 10)
+            return vfriValuesForFlaps10;
+        else
+            return vfriValuesForFlaps15;
+    }
+    public int getVclmb(){
+        return vclmbValues[i];
+    }
 }

@@ -29,14 +29,14 @@ class TakeoffSpeedsCalculationTest {
     }
     @Test
     void v1_speed_test_weight_18000_temp_20_alt_1000_flaps_5(){
-        assertEquals(102, takeoffSpeedsCalculation_1.calculateV1());
+        assertEquals(102, takeoffSpeedsCalculation_1.getV1());
     }
     @Test
     void v2_speed_test_weight_18000_temp_20_alt_1000_flaps_5(){
-        assertEquals(116, takeoffSpeedsCalculation_1.calculateV2());
+        assertEquals(116, takeoffSpeedsCalculation_1.getV2());
     }
     @Test
-    void vr_speed_test_weight_18000_temp_20_alt_1000_flaps_5(){assertEquals(108, takeoffSpeedsCalculation_1.calculateVr());}
+    void vr_speed_test_weight_18000_temp_20_alt_1000_flaps_5(){assertEquals(108, takeoffSpeedsCalculation_1.getVr());}
 
 
 
@@ -61,14 +61,14 @@ class TakeoffSpeedsCalculationTest {
 
     @Test
     void v1_speed_test_weight_20000_temp_21_alt_3000_flaps_5(){
-        assertEquals(108, takeoffSpeedsCalculation_2.calculateV1());
+        assertEquals(108, takeoffSpeedsCalculation_2.getV1());
     }
     @Test
     void v2_speed_test_weight_20000_temp_21_alt_3000_flaps_5(){
-        assertEquals(112, takeoffSpeedsCalculation_2.calculateV2());
+        assertEquals(112, takeoffSpeedsCalculation_2.getV2());
     }
     @Test
-    void vr_speed_test_weight_20000_temp_21_alt_3000_flaps_5(){assertEquals(108, takeoffSpeedsCalculation_2.calculateVr());}
+    void vr_speed_test_weight_20000_temp_21_alt_3000_flaps_5(){assertEquals(108, takeoffSpeedsCalculation_2.getVr());}
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_3 = new TakeoffSpeedsCalculation(10,20,22000,5000,60,90,10);
 
@@ -91,14 +91,14 @@ class TakeoffSpeedsCalculationTest {
 
     @Test
     void v1_speed_test_weight_22000_temp_20_alt_5000_flaps_10_wetrunway(){
-        assertEquals(98, takeoffSpeedsCalculation_3.calculateV1());
+        assertEquals(98, takeoffSpeedsCalculation_3.getV1());
     }
     @Test
     void v2_speed_test_weight_22000_temp_20_alt_5000_flaps_10_wetrunway(){
-        assertEquals(108, takeoffSpeedsCalculation_3.calculateV2());
+        assertEquals(108, takeoffSpeedsCalculation_3.getV2());
     }
     @Test
-    void vr_speed_test_weight_22000_temp_20_alt_5000_flaps_10_wetrunway(){assertEquals(105, takeoffSpeedsCalculation_3.calculateVr());}
+    void vr_speed_test_weight_22000_temp_20_alt_5000_flaps_10_wetrunway(){assertEquals(105, takeoffSpeedsCalculation_3.getVr());}
 
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_4 = new TakeoffSpeedsCalculation(10,21,24000,7000,180,40,3);
@@ -122,14 +122,14 @@ class TakeoffSpeedsCalculationTest {
 
     @Test
     void v1_speed_test_weight_24000_temp_21_alt_7000_flaps_10_wetrunway(){
-        assertEquals(103.41, takeoffSpeedsCalculation_4.calculateV1());
+        assertEquals(103.41, takeoffSpeedsCalculation_4.getV1());
     }
     @Test
     void v2_speed_test_weight_24000_temp_21_alt_7000_flaps_10_wetrunway(){
-        assertEquals(113, takeoffSpeedsCalculation_4.calculateV2());
+        assertEquals(113, takeoffSpeedsCalculation_4.getV2());
     }
     @Test
-    void vr_speed_test_weight_24000_temp_21_alt_7000_flaps_10_wetrunway(){assertEquals(112, takeoffSpeedsCalculation_4.calculateVr());}
+    void vr_speed_test_weight_24000_temp_21_alt_7000_flaps_10_wetrunway(){assertEquals(112, takeoffSpeedsCalculation_4.getVr());}
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_5 = new TakeoffSpeedsCalculation(15,20,26000,9000,300,10,6);
 
@@ -152,14 +152,14 @@ class TakeoffSpeedsCalculationTest {
 
     @Test
     void v1_speed_test_weight_26000_temp_20_alt_9000_flaps_15_wetrunway(){
-        assertEquals(106.20, takeoffSpeedsCalculation_5.calculateV1());
+        assertEquals(106.20, takeoffSpeedsCalculation_5.getV1());
     }
     @Test
     void v2_speed_test_weight_26000_temp_20_alt_9000_flaps_15_wetrunway(){
-        assertEquals(114, takeoffSpeedsCalculation_5.calculateV2());
+        assertEquals(114, takeoffSpeedsCalculation_5.getV2());
     }
     @Test
-    void vr_speed_test_weight_26000_temp_20_alt_9000_flaps_15_wetrunway(){assertEquals(114, takeoffSpeedsCalculation_5.calculateVr());}
+    void vr_speed_test_weight_26000_temp_20_alt_9000_flaps_15_wetrunway(){assertEquals(114, takeoffSpeedsCalculation_5.getVr());}
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_6 = new TakeoffSpeedsCalculation(15,21,28000,9001,10,250,3);
 
@@ -182,14 +182,14 @@ class TakeoffSpeedsCalculationTest {
 
     @Test
     void v1_speed_test_weight_28000_temp_21_alt_9001_flaps_15_wetrunway(){
-        assertEquals(111.41, takeoffSpeedsCalculation_6.calculateV1());
+        assertEquals(111.41, takeoffSpeedsCalculation_6.getV1());
     }
     @Test
     void v2_speed_test_weight_28000_temp_21_alt_9001_flaps_15_wetrunway(){
-        assertEquals(120, takeoffSpeedsCalculation_6.calculateV2());
+        assertEquals(120, takeoffSpeedsCalculation_6.getV2());
     }
     @Test
-    void vr_speed_test_weight_28000_temp_21_alt_9001_flaps_15_wetrunway(){assertEquals(120, takeoffSpeedsCalculation_6.calculateVr());}
+    void vr_speed_test_weight_28000_temp_21_alt_9001_flaps_15_wetrunway(){assertEquals(120, takeoffSpeedsCalculation_6.getVr());}
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_7 = new TakeoffSpeedsCalculation(5,20,28001,0,10,161,10);
 
@@ -212,33 +212,33 @@ class TakeoffSpeedsCalculationTest {
 
     @Test
     void v1_speed_test_weight_28001_temp_20_alt_0_flaps_5_wetrunway(){
-        assertEquals(122, takeoffSpeedsCalculation_7.calculateV1());
+        assertEquals(122, takeoffSpeedsCalculation_7.getV1());
     }
     @Test
     void v2_speed_test_weight_28001_temp_20_alt_0_flaps_5_wetrunway(){
-        assertEquals(135, takeoffSpeedsCalculation_7.calculateV2());
+        assertEquals(135, takeoffSpeedsCalculation_7.getV2());
     }
     @Test
-    void vr_speed_test_weight_28001_temp_20_alt_0_flaps_5_wetrunway(){assertEquals(133, takeoffSpeedsCalculation_7.calculateVr());}
+    void vr_speed_test_weight_28001_temp_20_alt_0_flaps_5_wetrunway(){assertEquals(133, takeoffSpeedsCalculation_7.getVr());}
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_8 = new TakeoffSpeedsCalculation(10,21,18000,0);
 
     @Test
-    void vr_speed_test_weight_18000_temp_21_alt_0_flaps_10(){assertEquals(104, takeoffSpeedsCalculation_8.calculateVr());}
+    void vr_speed_test_weight_18000_temp_21_alt_0_flaps_10(){assertEquals(104, takeoffSpeedsCalculation_8.getVr());}
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_9 = new TakeoffSpeedsCalculation(15,21,18000,0);
 
     @Test
-    void vr_speed_test_weight_18000_temp_21_alt_0_flaps_15(){assertEquals(100, takeoffSpeedsCalculation_9.calculateVr());}
+    void vr_speed_test_weight_18000_temp_21_alt_0_flaps_15(){assertEquals(100, takeoffSpeedsCalculation_9.getVr());}
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_10 = new TakeoffSpeedsCalculation(10,21,18000,0,29,330,1);
 
     @Test
-    void v1_speed_test_weight_18000_temp_21_alt_0_flaps_10_wetruway(){assertEquals(96, takeoffSpeedsCalculation_10.calculateV1());}
+    void v1_speed_test_weight_18000_temp_21_alt_0_flaps_10_wetruway(){assertEquals(96, takeoffSpeedsCalculation_10.getV1());}
 
     private final TakeoffSpeedsCalculation takeoffSpeedsCalculation_11 = new TakeoffSpeedsCalculation(5,21,18000,0,29,120,1);
 
     @Test
-    void v1_speed_test_weight_18000_temp_21_alt_0_flaps_5_wetruway(){assertEquals(97, takeoffSpeedsCalculation_11.calculateV1());}
+    void v1_speed_test_weight_18000_temp_21_alt_0_flaps_5_wetruway(){assertEquals(97, takeoffSpeedsCalculation_11.getV1());}
 
 }

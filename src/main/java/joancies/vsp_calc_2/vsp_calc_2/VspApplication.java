@@ -24,7 +24,6 @@ public class VspApplication extends Application {
             @Override
             public void handle(WindowEvent windowEvent) {
                 Platform.exit();
-
                 System.exit(0);
             }
         });

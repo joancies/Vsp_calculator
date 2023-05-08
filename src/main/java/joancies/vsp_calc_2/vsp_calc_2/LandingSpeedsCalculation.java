@@ -6,17 +6,11 @@ public class LandingSpeedsCalculation {
     int weight;
     int landingFuel;
     int zeroFuelWeight;
-
-
-
-
     int i;
-
-    int[] vapp;
-    int[] vref;
-    int[] vga;
-
-
+    int landingWeight;
+    int[] vappChosenArray;
+    int[] vrefChosenArray;
+    int[] vgaChosenArray;
 
     final int[] vappValuesForFlaps05 = {115, 120, 126, 131, 137, 142, 146};
     final int[] vgaValuesForFlaps05 = {109, 110, 115, 120, 125, 130, 134};
@@ -36,78 +30,72 @@ public class LandingSpeedsCalculation {
         this.landingFlapsSettings = landingFlapsSettings;
         this.landingFuel = landingFuel;
         this.zeroFuelWeight = zeroFuelWeight;
-        weight= getLandingWeight();
-        getI();
+        i= getI();
     }
-    int landingWeight;
-
-    public int getLandingWeight() {
-        landingWeight = zeroFuelWeight + landingFuel;
-        return landingWeight;
-    }
-
     public int getI(){
+        weight = getLandingWeight();
         if(weight<= 18_000)
-            i=0;
+            return 0;
         else if(weight>18_000 && weight<=20_000 )
-            i=1;
+            return 1;
         else if(weight>20_000 && weight<=22_000 )
-            i=2;
+            return 2;
         else if(weight>22_000 && weight<=24_000 )
-            i=3;
+            return 3;
         else if(weight>24_000 && weight<=26_000 )
-            i=4;
+            return 4;
         else if(weight>26_000 && weight<=28_000 )
-            i=5;
-        else if(weight>28_000 )
-            i=6;
-
-        return i;
+            return 5;
+        else
+            return 6;
     }
-
-
-    public int getVapp(){
+    public int getLandingWeight() {
+        return zeroFuelWeight + landingFuel;
+    }
+    public int getVappChosenArray(){
+        vappChosenArray = getVappValuesForFlapsSettings();
+        return vappChosenArray[i];
+    }
+    public int[] getVappValuesForFlapsSettings(){
+        if(landingFlapsSettings == 5)
+            return vappValuesForFlaps05;
+        else if(landingFlapsSettings == 10)
+            return vappValuesForFlaps10;
+        else if(landingFlapsSettings == 15)
+            return vappValuesForFlaps15;
+        else
+            return vrefValuesForFlaps35;
+    }
+    public int getVrefChosenArray(){
+        vrefChosenArray = getVrefValuesForFlapsSettings();
+        return vrefChosenArray[i];
+    }
+    public int[] getVrefValuesForFlapsSettings(){
 
         if(landingFlapsSettings == 5)
-            vapp = vappValuesForFlaps05;
+            return vappValuesForFlaps05;
         else if(landingFlapsSettings == 10)
-            vapp = vappValuesForFlaps10;
+            return vrefValuesForFlaps10;
         else if(landingFlapsSettings == 15)
-            vapp = vappValuesForFlaps15;
+            return vrefValuesForFlaps15;
         else
-            vapp = vrefValuesForFlaps35;
-
-        return vapp[i];
+            return vrefValuesForFlaps35;
     }
 
-    public int getVref(){
+    public int getVgaChosenArray(){
+        vgaChosenArray= getVgaValuesForFlapsSettings();
+        return vgaChosenArray[i];
+    }
 
+    public int[] getVgaValuesForFlapsSettings(){
         if(landingFlapsSettings == 5)
-            vref = vappValuesForFlaps05;
+            return vgaValuesForFlaps05;
         else if(landingFlapsSettings == 10)
-            vref = vrefValuesForFlaps10;
+            return vgaValuesForFlaps10;
         else if(landingFlapsSettings == 15)
-            vref = vrefValuesForFlaps15;
+            return vgaValuesForFlaps15;
         else
-            vref = vrefValuesForFlaps35;
-
-        return vref[i];
+            return vrefValuesForFlaps35;
     }
-
-    public int getVga(){
-
-        if(landingFlapsSettings == 5)
-            vga = vgaValuesForFlaps05;
-        else if(landingFlapsSettings == 10)
-            vga = vgaValuesForFlaps10;
-        else if(landingFlapsSettings == 15)
-            vga = vgaValuesForFlaps15;
-        else
-            vga = vrefValuesForFlaps35;
-
-        return vga[i];
-    }
-
-
 }
 
